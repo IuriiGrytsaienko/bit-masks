@@ -13,22 +13,16 @@ const bHasNumberOfChildren = obj => (obj & QUANTITY_OF_CHILDRENS) >> 3;
 const bHasAge = obj => (obj & YEARS) >> 6;
 
 //man, unmarried, has higher education, under 30 years
-let somePerson4 = people.filter( item => bIsMan(item))
-                          .filter(item => !bIsMarried(item))
-                          .filter(item => bHasHigherEducation(item))
-                          .filter(item => bHasAge(item) < 30);
+let somePerson4 = people.filter(item => bIsMan(item) && !bIsMarried(item) && bHasHigherEducation(item)
+                                        && (bHasAge(item) < 30));
 
 // women, married, 3 or more child
-let somePerson5 = people.filter( item => !bIsMan(item))
-                        .filter(item => bIsMarried(item))
-                        .filter( item => bHasNumberOfChildren(item) > 2);
+let somePerson5 = people.filter( item => !bIsMan(item) && bIsMarried(item) && (bHasNumberOfChildren(item) > 2));
 
 // woman, unmarried, 25<=age<=30, has higher education, whithout child
-let somePerson6 = people.filter(item => !bIsMan(item))
-                        .filter(item => bHasAge(item) > 24)
-                        .filter(item => bHasAge(item) < 31)
-                        .filter(item => bHasHigherEducation(item))
-                        .filter( item => bHasNumberOfChildren(item) < 1);
+let somePerson6 = people.filter(item => !bIsMan(item) && (bHasAge(item) > 24) && (bHasAge(item) < 31)
+                                        && bHasHigherEducation(item) && (bHasNumberOfChildren(item) < 1) );
+
 
 console.log(people);
 console.log(somePerson4);
